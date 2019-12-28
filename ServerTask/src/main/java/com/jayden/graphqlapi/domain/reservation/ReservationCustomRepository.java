@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface ReservationCustomRepository {
 
-    List<Reservation> findByMeetingRoomAndStartDtAndEndDt(MeetingRoom meetingRoom, LocalDateTime localStartDt, LocalDateTime localEndDt);
+    List<Reservation> findByMeetingRoomAndStartDtAndEndDt(MeetingRoom meetingRoom, LocalDateTime reservationStartDt, LocalDateTime reservationEndDt);
+
+    List<Reservation> findByStartDtAndEndDt(LocalDateTime startDateTime, LocalDateTime endDateTime);
 }

@@ -3,6 +3,7 @@ package com.jayden.graphqlapi.graphql;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.jayden.graphqlapi.domain.meetingroom.MeetingRoom;
 import com.jayden.graphqlapi.domain.reservation.Reservation;
+import com.jayden.graphqlapi.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,8 +14,10 @@ import java.util.List;
 @Component
 public class Query implements GraphQLQueryResolver {
 
+    private final ReservationService reservationService;
+
     public List<Reservation> getThisWeekMeetingRoomReservations() {
-        return Collections.EMPTY_LIST;
+        return reservationService.getThisWeekMeetingRoomReservations();
     }
 
     public List<MeetingRoom> getEmptyMeetingRooms(String startDt, String endDt) {

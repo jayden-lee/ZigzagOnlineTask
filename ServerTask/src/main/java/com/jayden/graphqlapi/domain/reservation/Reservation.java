@@ -29,11 +29,11 @@ public class Reservation {
     @Column(name = "meetingroom_id")
     private Long meetingRoomId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id", updatable = false, insertable = false)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "meetingroom_id", referencedColumnName = "id", updatable = false, insertable = false)
     private MeetingRoom meetingRoom;
 

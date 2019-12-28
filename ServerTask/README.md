@@ -30,10 +30,49 @@ mutation {
 
 ### Request
 ```graphql
+query {
+  thisWeekMeetingRoomReservations
+  {
+    user {
+      department
+    },
+    meetingRoom {
+      name
+    },
+    startDt,
+    endDt
+  }
+}
 ```
 
 ### Response
-```graphql
+```json
+{
+  "data": {
+    "thisWeekMeetingRoomReservations": [
+      {
+        "user": {
+          "department": "dev"
+        },
+        "meetingRoom": {
+          "name": "5-1"
+        },
+        "startDt": "2019-12-28T12:00",
+        "endDt": "2019-12-28T13:00"
+      },
+      {
+        "user": {
+          "department": "planning"
+        },
+        "meetingRoom": {
+          "name": "5-2"
+        },
+        "startDt": "2019-12-23T12:00",
+        "endDt": "2019-12-23T13:00"
+      }
+    ]
+  }
+}
 ```
 
 ## 주어진 시간에 비어있는 회의실 목록 얻기
@@ -43,7 +82,7 @@ mutation {
 ```
 
 ### Response
-```graphql
+```json
 ```
 
 ## GraphQL Testing
