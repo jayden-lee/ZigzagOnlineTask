@@ -7,8 +7,21 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="ServerTask" />
+        <module name="graphql-api" />
         <module name="FunctionTask" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="FunctionTask" target="1.11" />
+      <module name="graphql-api" target="1.11" />
+      <module name="ZigzagOnlineTask" target="1.11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ServerTask" options="-parameters" />
+      <module name="graphql-api" options="-parameters" />
+    </option>
   </component>
 </project>

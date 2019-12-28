@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>FunctionTask</artifactId>
+    <artifactId>function-task</artifactId>
 
     <dependencies>
         <dependency>
