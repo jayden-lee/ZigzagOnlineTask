@@ -13,9 +13,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="FunctionTask" target="1.11" />
+      <module name="FunctionTask" target="1.8" />
       <module name="graphql-api" target="1.8" />
-      <module name="ZigzagOnlineTask" target="1.11" />
+      <module name="ZigzagOnlineTask" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
