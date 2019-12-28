@@ -7,6 +7,7 @@ import com.jayden.graphqlapi.service.MeetingRoomService;
 import com.jayden.graphqlapi.service.ReservationService;
 import com.jayden.graphqlapi.utils.DateTimeUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -23,6 +24,7 @@ public class Query implements GraphQLQueryResolver {
         return reservationService.getThisWeekMeetingRoomReservations();
     }
 
+    @Cacheable(value="meetingRoom")
     public List<MeetingRoom> getEmptyMeetingRooms(String startDt, String endDt) {
         LocalDateTime reservationStartDt = LocalDateTime.parse(startDt);
         LocalDateTime reservationEndDt = LocalDateTime.parse(endDt);

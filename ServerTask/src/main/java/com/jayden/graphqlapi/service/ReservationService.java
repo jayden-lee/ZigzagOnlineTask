@@ -8,6 +8,7 @@ import com.jayden.graphqlapi.domain.user.User;
 import com.jayden.graphqlapi.domain.user.UserRepository;
 import com.jayden.graphqlapi.utils.DateTimeUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,14 +25,14 @@ public class ReservationService {
 
     // TODO 도메인 클래스로 로직 넣는 리팩토링 필요
     @Transactional
-    public Reservation reservation(Long userId, Long meetingRoomId, LocalDateTime localStartDt, LocalDateTime localEndDt) {
+    public Reservation reservation(Long userId, Long meetingRoomId, LocalDateTime startDt, LocalDateTime endDt) {
         MeetingRoom meetingRoom = meetingRoomRepository.findById(meetingRoomId)
             .orElseThrow(() -> new RuntimeException("This meeting room does not exist."));
 
         User user = userRepository.findById(userId)
             .orElseThrow(() -> new RuntimeException("User does not exist"));
 
-        List<Reservation> reservations = reservationRepository.findByMeetingRoomAndStartDtAndEndDt(meetingRoom, localStartDt, localEndDt);
+        List<Reservation> reservations = reservationRepository.findByMeetingRoomAndStartDtAndEndDt(meetingRoom, startDt, endDt);
         if (reservations.size() > 0) {
             throw new RuntimeException("The meeting room is already booked at the time.");
         }
@@ -39,8 +40,8 @@ public class ReservationService {
         Reservation reservation = Reservation.builder()
             .meetingRoomId(meetingRoom.getId())
             .userId(user.getId())
-            .startDt(localStartDt)
-            .endDt(localEndDt)
+            .startDt(startDt)
+            .endDt(endDt)
             .build();
 
         return reservationRepository.save(reservation);

@@ -1,9 +1,20 @@
 # GraphQL Server Task
 > GraphQL을 이용한 간단한 회의실 예약 시스템 API 서버
 
+## Using Dependency Module
+- Spring Boot
+- JPA
+- Cache
+- Web MVC
+- GraphQL
+- MySQL
+- QueryDSL
+- ...
+
 ## 회의실 예약 시스템 API
 - 시간 타임존은 UTC를 기준으로 설정
 - 사용자와 회의실 정보는 더미 데이터로 미리 생성
+- 회의실 예약 정보가 새로 생성되면, 캐싱된 빈 회의실 목록 정보를 제거
 
 ## 회의실 예약
 
