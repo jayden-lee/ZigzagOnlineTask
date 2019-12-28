@@ -7,10 +7,23 @@
 
 ### Request
 ```graphql
+mutation {
+  reservation(userId: 1, meetingRoomId: 1, start_dt:"2019-12-28T10:00:00", end_dt:"2019-12-28T11:00:00") 
+  {
+    id
+  }
+}
 ```
 
 ### Response
-```graphql
+```json
+{
+  "data": {
+    "reservation": {
+      "id": "1"
+    }
+  }
+}
 ```
 
 ## 이번 주 회의실 예약 내역 얻기
@@ -35,6 +48,11 @@
 
 ## GraphQL Testing
 - http://localhost:8080/graphiql
+
+## Run Application
+```
+mvn spring-boot:run
+```
 
 ## References
 - https://www.baeldung.com/spring-graphql

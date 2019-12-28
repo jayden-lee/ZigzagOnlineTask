@@ -2,6 +2,7 @@ package com.jayden.graphqlapi.domain.user;
 
 import com.jayden.graphqlapi.domain.reservation.Reservation;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "user")
 public class User {
