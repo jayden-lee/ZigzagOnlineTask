@@ -14,6 +14,20 @@
 ## 회의실 예약 시스템 API
 - 시간 타임존은 UTC를 기준으로 설정
 - 사용자와 회의실 정보는 더미 데이터로 미리 생성
+    ```sql
+    INSERT INTO `meetingroom` (`name`, `type`) VALUES ('5-1', 'FOUR');
+    INSERT INTO `meetingroom` (`name`, `type`) VALUES ('5-2', 'SIX');
+    INSERT INTO `meetingroom` (`name`, `type`) VALUES ('5-3', 'EIGHT');
+    INSERT INTO `meetingroom` (`name`, `type`) VALUES ('6-1', 'EIGHT');
+    INSERT INTO `meetingroom` (`name`, `type`) VALUES ('6-2', 'EIGHT');
+    
+    INSERT INTO `user` (`department`, `name`) VALUES ('dev', 'jayden');
+    INSERT INTO `user` (`department`, `name`) VALUES ('planning', 'ella');
+    INSERT INTO `user` (`department`, `name`) VALUES ('planning', 'robb');
+    INSERT INTO `user` (`department`, `name`) VALUES ('dev', 'kelly');
+    INSERT INTO `user` (`department`, `name`) VALUES ('design', 'cia');
+    INSERT INTO `user` (`department`, `name`) VALUES ('hr', 'bill');
+    ```
 - 회의실 예약 정보가 새로 생성되면, 캐싱된 빈 회의실 목록 정보를 제거
 
 ## 회의실 예약
