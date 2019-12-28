@@ -31,7 +31,7 @@ public class ReservationService {
             .orElseThrow(() -> new InvalidArgumentException("This meeting room does not exist.", meetingRoomId));
 
         User user = userRepository.findById(userId)
-            .orElseThrow(() -> new InvalidArgumentException("User does not exist", userId));
+            .orElseThrow(() -> new InvalidArgumentException("User does not exist.", userId));
 
         List<Reservation> reservations = reservationRepository.findAlreadyReservedMeetingRoomList(meetingRoom, startDt, endDt);
         if (!CollectionUtils.isEmpty(reservations)) {

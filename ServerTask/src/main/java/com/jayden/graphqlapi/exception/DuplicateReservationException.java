@@ -11,7 +11,7 @@ import java.util.Map;
 public class DuplicateReservationException extends RuntimeException implements GraphQLError {
 
     private Map<String, Object> extensions = new HashMap<>();
-    private static final String MESSAGE = "The meeting room is already booked at the time";
+    private static final String MESSAGE = "The meeting room is already booked at the time.";
 
     public DuplicateReservationException() {
         super(MESSAGE);
