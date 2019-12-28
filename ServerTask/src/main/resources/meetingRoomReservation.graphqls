@@ -1,0 +1,34 @@
+enum RoomType {
+    FOUR,
+    SIX,
+    EIGHT
+}
+
+type User {
+    id: Int!
+    name: String!
+    department: String!
+}
+
+type MeetingRoom {
+    id: Int!
+    name: String!
+    type: RoomType!
+}
+
+type Reservation {
+    id: ID!
+    user: User
+    meetingRoom: MeetingRoom
+    startDt: String
+    endDt: String
+}
+
+type Query {
+    thisWeekMeetingRoomReservations: [Reservation]
+    emptyMeetingRooms(startDt: String!, endDt: String!): [MeetingRoom]
+}
+
+type Mutation {
+    reservation(userId: Int!, meetingRoomId: Int!, start_dt : String!, end_dt : String!): Reservation
+}
