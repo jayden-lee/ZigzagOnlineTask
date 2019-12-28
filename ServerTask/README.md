@@ -79,10 +79,43 @@ query {
 
 ### Request
 ```graphql
+query {
+  emptyMeetingRooms(startDt: "2019-12-28T12:00:00", endDt: "2019-12-28T12:59:00")
+  {
+    name,
+    type
+  }
+}
 ```
 
 ### Response
 ```json
+{
+  "data": {
+    "emptyMeetingRooms": [
+      {
+        "name": "5-1",
+        "type": "FOUR"
+      },
+      {
+        "name": "5-2",
+        "type": "SIX"
+      },
+      {
+        "name": "5-3",
+        "type": "EIGHT"
+      },
+      {
+        "name": "6-1",
+        "type": "EIGHT"
+      },
+      {
+        "name": "6-2",
+        "type": "EIGHT"
+      }
+    ]
+  }
+}
 ```
 
 ## GraphQL Testing

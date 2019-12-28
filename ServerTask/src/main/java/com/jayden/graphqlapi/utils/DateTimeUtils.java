@@ -18,4 +18,10 @@ public final class DateTimeUtils {
             .withMinute(59)
             .withSecond(59);
     }
+
+    public static void validateDate(LocalDateTime startDt, LocalDateTime endDt) {
+        if (startDt.isAfter(endDt)) {
+            throw new RuntimeException("Datetime argument value is invalid.");
+        }
+    }
 }
