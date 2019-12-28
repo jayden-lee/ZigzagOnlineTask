@@ -131,6 +131,9 @@ query {
 }
 ```
 
+## GraphQL Schema
+- http://localhost:8080/graphql/schema.json
+
 ## GraphQL Testing
 - http://localhost:8080/graphiql
 

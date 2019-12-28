@@ -6,9 +6,10 @@ import com.jayden.graphqlapi.domain.reservation.Reservation;
 import com.jayden.graphqlapi.domain.reservation.ReservationRepository;
 import com.jayden.graphqlapi.domain.user.User;
 import com.jayden.graphqlapi.domain.user.UserRepository;
+import com.jayden.graphqlapi.exception.DuplicateReservationException;
+import com.jayden.graphqlapi.exception.InvalidArgumentException;
 import com.jayden.graphqlapi.utils.DateTimeUtils;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,14 +28,14 @@ public class ReservationService {
     @Transactional
     public Reservation reservation(Long userId, Long meetingRoomId, LocalDateTime startDt, LocalDateTime endDt) {
         MeetingRoom meetingRoom = meetingRoomRepository.findById(meetingRoomId)
-            .orElseThrow(() -> new RuntimeException("This meeting room does not exist."));
+            .orElseThrow(() -> new InvalidArgumentException("This meeting room does not exist.", meetingRoomId));
 
         User user = userRepository.findById(userId)
-            .orElseThrow(() -> new RuntimeException("User does not exist"));
+            .orElseThrow(() -> new InvalidArgumentException("User does not exist", userId));
 
         List<Reservation> reservations = reservationRepository.findByMeetingRoomAndStartDtAndEndDt(meetingRoom, startDt, endDt);
         if (reservations.size() > 0) {
-            throw new RuntimeException("The meeting room is already booked at the time.");
+            throw new DuplicateReservationException();
         }
 
         Reservation reservation = Reservation.builder()
