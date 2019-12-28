@@ -24,11 +24,11 @@ public class Query implements GraphQLQueryResolver {
         return reservationService.getThisWeekMeetingRoomReservations();
     }
 
-    @Cacheable(value="meetingRoom")
+    @Cacheable(value = "meetingRoom")
     public List<MeetingRoom> getEmptyMeetingRooms(String startDt, String endDt) {
-        LocalDateTime reservationStartDt = LocalDateTime.parse(startDt);
-        LocalDateTime reservationEndDt = LocalDateTime.parse(endDt);
-        DateTimeUtils.validateDate(reservationStartDt, reservationEndDt);
+        LocalDateTime reservationStartDt = DateTimeUtils.parse(startDt);
+        LocalDateTime reservationEndDt = DateTimeUtils.parse(endDt);
+        DateTimeUtils.validateStartDateTimeAndEndDateTime(reservationStartDt, reservationEndDt);
         return meetingRoomService.getEmptyMeetingRooms(reservationStartDt, reservationEndDt);
     }
 }

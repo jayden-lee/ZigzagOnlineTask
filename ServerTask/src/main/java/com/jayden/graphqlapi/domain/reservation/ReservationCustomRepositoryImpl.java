@@ -19,7 +19,7 @@ public class ReservationCustomRepositoryImpl extends QuerydslRepositorySupport i
     }
 
     @Override
-    public List<Reservation> findByMeetingRoomAndStartDtAndEndDt(MeetingRoom meetingRoom, LocalDateTime reservationStartDt, LocalDateTime reservationEndDt) {
+    public List<Reservation> findAlreadyReservedMeetingRoomList(MeetingRoom meetingRoom, LocalDateTime reservationStartDt, LocalDateTime reservationEndDt) {
         return from(qReservation)
             .join(qMeetingRoom)
             .on(qReservation.meetingRoomId.eq(qMeetingRoom.id))
@@ -31,7 +31,7 @@ public class ReservationCustomRepositoryImpl extends QuerydslRepositorySupport i
     }
 
     @Override
-    public List<Reservation> findByStartDtAndEndDt(LocalDateTime startDateTime, LocalDateTime endDateTime) {
+    public List<Reservation> findThisWeekReservedMeetingRoomList(LocalDateTime startDateTime, LocalDateTime endDateTime) {
         return from(qReservation)
             .join(qMeetingRoom)
             .fetchJoin()

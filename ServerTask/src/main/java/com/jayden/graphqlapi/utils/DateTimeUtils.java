@@ -1,5 +1,7 @@
 package com.jayden.graphqlapi.utils;
 
+import com.jayden.graphqlapi.exception.InvalidArgumentException;
+
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
@@ -19,9 +21,17 @@ public final class DateTimeUtils {
             .withSecond(59);
     }
 
-    public static void validateDate(LocalDateTime startDt, LocalDateTime endDt) {
+    public static void validateStartDateTimeAndEndDateTime(LocalDateTime startDt, LocalDateTime endDt) {
         if (startDt.isAfter(endDt)) {
-            throw new RuntimeException("Datetime argument value is invalid.");
+            throw new RuntimeException("Start date value cannot be greater than last date value.");
+        }
+    }
+
+    public static LocalDateTime parse(String dtString) {
+        try {
+            return LocalDateTime.parse(dtString);
+        } catch (Exception e) {
+            throw new InvalidArgumentException("The time value is invalid.", dtString);
         }
     }
 }

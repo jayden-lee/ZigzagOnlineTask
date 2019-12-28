@@ -23,6 +23,7 @@ public class MeetingRoomService {
 
     @Transactional(readOnly = true)
     public List<MeetingRoom> getEmptyMeetingRooms(LocalDateTime startDt, LocalDateTime endDt) {
-        return meetingRoomRepository.findByStartDtAndEndDt(startDt, endDt);
+        return meetingRoomRepository.findEmptyMeetingRoomList(startDt, endDt);
     }
+
 }

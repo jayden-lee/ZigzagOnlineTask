@@ -17,7 +17,7 @@ public class MeetingRoomCustomRepositoryImpl extends QuerydslRepositorySupport i
     }
 
     @Override
-    public List<MeetingRoom> findByStartDtAndEndDt(LocalDateTime startDt, LocalDateTime endDt) {
+    public List<MeetingRoom> findEmptyMeetingRoomList(LocalDateTime startDt, LocalDateTime endDt) {
         return from(qMeetingRoom)
             .where(
                 qMeetingRoom.id.notIn(

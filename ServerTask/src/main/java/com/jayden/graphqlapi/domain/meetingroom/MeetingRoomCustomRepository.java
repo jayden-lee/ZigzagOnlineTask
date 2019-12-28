@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface MeetingRoomCustomRepository {
 
-    List<MeetingRoom> findByStartDtAndEndDt(LocalDateTime startDt, LocalDateTime endDt);
+    List<MeetingRoom> findEmptyMeetingRoomList(LocalDateTime startDt, LocalDateTime endDt);
 }

@@ -12,6 +12,7 @@ import com.jayden.graphqlapi.utils.DateTimeUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,7 +25,6 @@ public class ReservationService {
     private final MeetingRoomRepository meetingRoomRepository;
     private final ReservationRepository reservationRepository;
 
-    // TODO 도메인 클래스로 로직 넣는 리팩토링 필요
     @Transactional
     public Reservation reservation(Long userId, Long meetingRoomId, LocalDateTime startDt, LocalDateTime endDt) {
         MeetingRoom meetingRoom = meetingRoomRepository.findById(meetingRoomId)
@@ -33,8 +33,8 @@ public class ReservationService {
         User user = userRepository.findById(userId)
             .orElseThrow(() -> new InvalidArgumentException("User does not exist", userId));
 
-        List<Reservation> reservations = reservationRepository.findByMeetingRoomAndStartDtAndEndDt(meetingRoom, startDt, endDt);
-        if (reservations.size() > 0) {
+        List<Reservation> reservations = reservationRepository.findAlreadyReservedMeetingRoomList(meetingRoom, startDt, endDt);
+        if (!CollectionUtils.isEmpty(reservations)) {
             throw new DuplicateReservationException();
         }
 
@@ -53,6 +53,6 @@ public class ReservationService {
         LocalDateTime now = LocalDateTime.now();
         final LocalDateTime startDateTime = DateTimeUtils.getThisWeekFirstDateTime(now);
         final LocalDateTime endDateTime = DateTimeUtils.getThisWeekLastDateTime(now);
-        return reservationRepository.findByStartDtAndEndDt(startDateTime, endDateTime);
+        return reservationRepository.findThisWeekReservedMeetingRoomList(startDateTime, endDateTime);
     }
 }

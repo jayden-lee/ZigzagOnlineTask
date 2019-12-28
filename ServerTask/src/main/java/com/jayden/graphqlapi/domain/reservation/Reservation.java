@@ -1,12 +1,11 @@
 package com.jayden.graphqlapi.domain.reservation;
 
-import com.jayden.graphqlapi.domain.user.User;
 import com.jayden.graphqlapi.domain.meetingroom.MeetingRoom;
+import com.jayden.graphqlapi.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.core.annotation.Order;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
