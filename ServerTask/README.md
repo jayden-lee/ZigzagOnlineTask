@@ -13,6 +13,7 @@
 
 ## 회의실 예약 시스템 API
 - 시간 타임존은 UTC를 기준으로 설정
+- 시간 포맷팅은 ISO_DATE_TIME(ex:2020-01-01T00:00:00)으로 설정
 - 사용자와 회의실 정보는 더미 데이터로 미리 생성
     ```sql
     INSERT INTO `meetingroom` (`name`, `type`) VALUES ('5-1', 'FOUR');
