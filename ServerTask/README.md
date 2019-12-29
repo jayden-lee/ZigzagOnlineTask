@@ -36,7 +36,7 @@
 ### Request
 ```graphql
 mutation {
-  reservation(userId: 1, meetingRoomId: 1, start_dt:"2019-12-28T10:00:00", end_dt:"2019-12-28T11:00:00") 
+  reserveMeetingRoom(userId: 1, meetingRoomId: 1, start_dt:"2019-12-28T10:00:00", end_dt:"2019-12-28T11:00:00") 
   {
     id
   }

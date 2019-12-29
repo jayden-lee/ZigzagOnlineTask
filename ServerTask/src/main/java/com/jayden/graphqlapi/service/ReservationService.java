@@ -26,7 +26,7 @@ public class ReservationService {
     private final ReservationRepository reservationRepository;
 
     @Transactional
-    public Reservation reservation(Long userId, Long meetingRoomId, LocalDateTime startDt, LocalDateTime endDt) {
+    public Reservation reserveMeetingRoom(Long userId, Long meetingRoomId, LocalDateTime startDt, LocalDateTime endDt) {
         MeetingRoom meetingRoom = meetingRoomRepository.findById(meetingRoomId)
             .orElseThrow(() -> new InvalidArgumentException("This meeting room does not exist.", meetingRoomId));
 

@@ -17,10 +17,10 @@ public class Mutation implements GraphQLMutationResolver {
     private final ReservationService reservationService;
 
     @CacheEvict(value = "meetingRoom", allEntries = true)
-    public Reservation reservation(Long userId, Long meetingRoomId, String startDt, String endDt) {
+    public Reservation reserveMeetingRoom(Long userId, Long meetingRoomId, String startDt, String endDt) {
         LocalDateTime reservationStartDt = DateTimeUtils.parse(startDt);
         LocalDateTime reservationEndDt = DateTimeUtils.parse(endDt);
         DateTimeUtils.validateStartDateTimeAndEndDateTime(reservationStartDt, reservationEndDt);
-        return reservationService.reservation(userId, meetingRoomId, reservationStartDt, reservationEndDt);
+        return reservationService.reserveMeetingRoom(userId, meetingRoomId, reservationStartDt, reservationEndDt);
     }
 }

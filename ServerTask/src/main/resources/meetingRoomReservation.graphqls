@@ -30,5 +30,5 @@ type Query {
 }
 
 type Mutation {
-    reservation(userId: Int!, meetingRoomId: Int!, start_dt : String!, end_dt : String!): Reservation
+    reserveMeetingRoom(userId: Int!, meetingRoomId: Int!, start_dt : String!, end_dt : String!): Reservation
 }
