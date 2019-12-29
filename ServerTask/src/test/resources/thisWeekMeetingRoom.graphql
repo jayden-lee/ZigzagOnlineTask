@@ -1,0 +1,13 @@
+query {
+    thisWeekMeetingRoomReservations
+    {
+        user {
+            department
+        },
+        meetingRoom {
+            name
+        },
+        startDt,
+        endDt
+    }
+}

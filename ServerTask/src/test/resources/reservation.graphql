@@ -1,0 +1,6 @@
+mutation ReserveMeetingRoom($userId:Int!, $meetingRoomId:Int!, $start_dt:String!, $end_dt:String!) {
+    reserveMeetingRoom(userId: $userId, meetingRoomId: $meetingRoomId, start_dt:$start_dt, end_dt:$end_dt)
+    {
+        id
+    }
+}

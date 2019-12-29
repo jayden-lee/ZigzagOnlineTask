@@ -10,9 +10,11 @@
         <module name="ServerTask" />
         <module name="graphql-api" />
         <module name="FunctionTask" />
+        <module name="function-task" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="function-task" target="1.8" />
       <module name="FunctionTask" target="1.8" />
       <module name="graphql-api" target="1.8" />
       <module name="ZigzagOnlineTask" target="1.8" />
