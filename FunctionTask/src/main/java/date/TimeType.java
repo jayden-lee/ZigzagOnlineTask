@@ -5,8 +5,8 @@ public enum TimeType {
     AM("AM") {
         @Override
         public int computeNewHour(int baseHour, int newHour) {
-            if (baseHour >= 12) {
-                newHour -= 12;
+            if (baseHour >= TWELVE) {
+                newHour -= TWELVE;
             }
 
             return convertOverValue(newHour);
@@ -15,7 +15,7 @@ public enum TimeType {
     PM("PM") {
         @Override
         public int computeNewHour(int baseHour, int newHour) {
-            newHour += 12;
+            newHour += TWELVE;
             return convertOverValue(newHour);
         }
     },
@@ -27,6 +27,8 @@ public enum TimeType {
     };
 
     private String name;
+    private static final int TWELVE = 12;
+    private static final int TWENTY_FOUR = 24;
 
     TimeType(String name) {
         this.name = name;
@@ -35,8 +37,8 @@ public enum TimeType {
     public abstract int computeNewHour(int baseHour, int newHour);
 
     int convertOverValue(int value) {
-        if (value >= 24) {
-            return value % 24;
+        if (value >= TWENTY_FOUR) {
+            return value % TWENTY_FOUR;
         }
 
         return value;
@@ -49,6 +51,6 @@ public enum TimeType {
             }
         }
 
-        throw new IllegalArgumentException("매개변수 정보가 잘못되었습니다");
+        throw new IllegalArgumentException("Invalid time type.");
     }
 }
