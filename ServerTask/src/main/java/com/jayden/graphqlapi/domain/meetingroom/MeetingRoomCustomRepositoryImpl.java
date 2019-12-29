@@ -21,13 +21,14 @@ public class MeetingRoomCustomRepositoryImpl extends QuerydslRepositorySupport i
         return from(qMeetingRoom)
             .where(
                 qMeetingRoom.id.notIn(
-                    JPAExpressions.select(qReservation.meetingRoomId)
+                    JPAExpressions.select(qReservation.meetingRoom.id)
                         .from(qReservation)
                         .where(
                             qReservation.startDt.loe(startDt).and(qReservation.endDt.goe(startDt))
                                 .or(qReservation.startDt.loe(endDt).and(qReservation.endDt.goe(endDt))))
                 )
             )
+            .orderBy(qMeetingRoom.name.asc())
             .fetch();
     }
 }

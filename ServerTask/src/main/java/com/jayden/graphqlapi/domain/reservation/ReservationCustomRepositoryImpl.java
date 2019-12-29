@@ -22,7 +22,7 @@ public class ReservationCustomRepositoryImpl extends QuerydslRepositorySupport i
     public List<Reservation> findAlreadyReservedMeetingRoomList(MeetingRoom meetingRoom, LocalDateTime reservationStartDt, LocalDateTime reservationEndDt) {
         return from(qReservation)
             .join(qMeetingRoom)
-            .on(qReservation.meetingRoomId.eq(qMeetingRoom.id))
+            .on(qReservation.meetingRoom.id.eq(qMeetingRoom.id))
             .where(
                 qMeetingRoom.name.eq(meetingRoom.getName())
                     .and(qReservation.startDt.loe(reservationStartDt).and(qReservation.endDt.goe(reservationStartDt))
@@ -34,13 +34,12 @@ public class ReservationCustomRepositoryImpl extends QuerydslRepositorySupport i
     public List<Reservation> findThisWeekReservedMeetingRoomList(LocalDateTime startDateTime, LocalDateTime endDateTime) {
         return from(qReservation)
             .join(qMeetingRoom)
-            .fetchJoin()
             .on(qReservation.meetingRoomId.eq(qMeetingRoom.id))
             .join(qUser)
-            .fetchJoin()
             .on(qReservation.userId.eq(qUser.id))
             .where(
                 qReservation.startDt.goe(startDateTime).and(qReservation.endDt.loe(endDateTime))
-            ).fetch();
+            ).orderBy(qReservation.startDt.asc(), qReservation.endDt.asc())
+            .fetch();
     }
 }

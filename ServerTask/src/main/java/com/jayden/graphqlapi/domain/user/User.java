@@ -21,10 +21,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", unique = true, nullable = false)
     private String name;
 
-    @Column(name = "department")
+    @Column(name = "department", nullable = false)
     private String department;
 
     @OneToMany(mappedBy = "user")
