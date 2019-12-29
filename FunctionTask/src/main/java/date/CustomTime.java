@@ -54,7 +54,7 @@ public class CustomTime {
         minute = Integer.valueOf(dateValues[1]);
         second = Integer.valueOf(dateValues[2]);
 
-        checkTimeValues(hour, minute, second);
+        check12ClockTimeValues(hour, minute, second);
     }
 
     private void checkValidInputDateValues(String[] dateValues) {
@@ -63,7 +63,7 @@ public class CustomTime {
         }
     }
 
-    private void checkTimeValues(int hour, int minute, int second) {
+    private void check12ClockTimeValues(int hour, int minute, int second) {
         if (hour < 1 || hour > 12) {
             throw new IllegalArgumentException("The hour value was entered incorrectly.");
         }
