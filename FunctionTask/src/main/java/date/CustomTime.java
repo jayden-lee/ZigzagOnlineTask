@@ -33,21 +33,7 @@ public class CustomTime {
 
     private void checkTimeTypeValue(TimeType timeType) {
         if (timeType == null) {
-            throw new IllegalArgumentException("매개변수 정보가 잘못되었습니다");
-        }
-    }
-
-    private void checkTimeValues(int hour, int minute, int second) {
-        if (hour < 1 || hour > 12) {
-            throw new IllegalArgumentException("매개변수 정보가 잘못되었습니다");
-        }
-
-        if (minute < 0 || minute >= 60) {
-            throw new IllegalArgumentException("매개변수 정보가 잘못되었습니다");
-        }
-
-        if (second < 0 || second >= 60) {
-            throw new IllegalArgumentException("매개변수 정보가 잘못되었습니다");
+            throw new IllegalArgumentException("Invalid date input value in 12 o'clock system.");
         }
     }
 
@@ -67,17 +53,33 @@ public class CustomTime {
         hour = Integer.valueOf(dateValues[0]);
         minute = Integer.valueOf(dateValues[1]);
         second = Integer.valueOf(dateValues[2]);
+
+        checkTimeValues(hour, minute, second);
     }
 
     private void checkValidInputDateValues(String[] dateValues) {
         if (dateValues == null || dateValues.length != 3) {
-            throw new IllegalArgumentException("매개변수 정보가 잘못되었습니다");
+            throw new IllegalArgumentException("The date input format is invalid.");
+        }
+    }
+
+    private void checkTimeValues(int hour, int minute, int second) {
+        if (hour < 1 || hour > 12) {
+            throw new IllegalArgumentException("The hour value was entered incorrectly.");
+        }
+
+        if (minute < 0 || minute >= 60) {
+            throw new IllegalArgumentException("The minute value was entered incorrectly.");
+        }
+
+        if (second < 0 || second >= 60) {
+            throw new IllegalArgumentException("The second value was entered incorrectly.");
         }
     }
 
     private void checkValidInputTimeValue(String inputDate) {
         if (inputDate == null || inputDate.length() != 11) {
-            throw new IllegalArgumentException("매개변수 정보가 잘못되었습니다");
+            throw new IllegalArgumentException("Datetime value is invalid.");
         }
     }
 
@@ -103,7 +105,7 @@ public class CustomTime {
 
     private void checkValidInputSeconds(int inputSecond) {
         if (inputSecond < 0 || inputSecond > 200000) {
-            throw new IllegalArgumentException("매개변수 정보가 잘못되었습니다");
+            throw new IllegalArgumentException("N value must be greater than 0 and less than or equal to 20000.");
         }
     }
 
@@ -121,15 +123,14 @@ public class CustomTime {
 
     public String formatDateString() {
         return MessageFormat.format(dateFormatPattern,
-            formatValue(hour), formatValue(minute), formatValue(second));
+            convertTwoDigitFormatValue(hour),
+            convertTwoDigitFormatValue(minute),
+            convertTwoDigitFormatValue(second)
+        );
     }
 
-    private String formatValue(int value) {
-        if (value < 10) {
-            return "0" + value;
-        }
-
-        return String.valueOf(value);
+    private String convertTwoDigitFormatValue(int value) {
+        return value < 10 ? "0" + value : String.valueOf(value);
     }
 
     public void changeDateFormat(String dateFormat) {
