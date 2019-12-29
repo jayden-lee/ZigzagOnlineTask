@@ -2,17 +2,21 @@ spring:
   h2:
     console:
       enabled: true
+  flyway:
+    enabled: true
+    encoding: UTF-8
   jpa:
     show-sql: true
     properties:
       hibernate:
         format_sql: true
-    generate-ddl: true
+    generate-ddl: false
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: admin007!
     url: jdbc:mysql://localhost:3306/testdb
     validationQuery: SELECT 1
+    initialization-mode: always
