@@ -11,15 +11,15 @@ public class DateFormatMainTest {
     @DisplayName("AM 시간 값에 N초 후 출력값이 올바른지 검증하는 테스트")
     public void Add_AmDate_AddSeconds() {
         // given
-        String dateString = "AM 12:10:00";
-        int second = 40;
+        String dateString = "AM 05:24:03";
+        int second = 102392;
 
         // when
         CustomTime customTime = new CustomTime(dateString);
         customTime = customTime.plusSecond(second);
 
         // then
-        assertEquals(customTime.formatDateString(), "00:10:40");
+        assertEquals(customTime.formatDateString(), "09:50:35");
     }
 
     @Test
