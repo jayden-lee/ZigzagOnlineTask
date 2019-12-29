@@ -105,7 +105,7 @@ public class CustomTime {
 
     private void checkValidInputSeconds(int inputSecond) {
         if (inputSecond < 0 || inputSecond > 200000) {
-            throw new IllegalArgumentException("N value must be greater than 0 and less than or equal to 20000.");
+            throw new IllegalArgumentException("N value must be greater than 0 and less than or equal to 200000.");
         }
     }
 
